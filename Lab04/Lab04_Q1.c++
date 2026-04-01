@@ -12,13 +12,12 @@ struct Student {
  int science; 
 }; 
 
-// 改成回傳 Student
-Student updateMath(Student s) { 
- s.math = 100;  
- return s;   // 把修改後的資料回傳
+//改成用指標傳遞值
+void updateMath(Student *s) { 
+ s->math = 100;   //用 -> 存取成員
 } 
 
-void printStudent(Student s) { 
+void printStudent(Student s) {   //輸出改變結果
  cout << "學生編號: " << s.id << endl; 
  cout << "姓名: " << s.name << endl; 
  cout << "數學成績: " << s.math << endl; 
@@ -35,10 +34,11 @@ int main() {
  one.social = 68; 
  one.science = 91; 
 
- // 接住回傳值！
- one = updateMath(one);
+ //傳位址
+ updateMath(&one);
 
  printStudent(one);  
 
  return 0; 
 }
+
